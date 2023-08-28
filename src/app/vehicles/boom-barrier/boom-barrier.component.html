@@ -1,0 +1,92 @@
+<div class="col-12">
+  <div class="card">
+    <!-- Toolbar -->
+    <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left">
+        <h4>Boom Barrier</h4>
+      </ng-template>
+      <ng-template pTemplate="right">
+        <button pButton pRipple label="New Boom barrier" icon="pi pi-plus" class="p-button-primary p-mr-2" (click)="initbarrier()"></button>
+      </ng-template>
+    </p-toolbar>
+    <!-- table -->
+    <p-table #dt1 [value]="barrier" dataKey="id" [rows]="10" [rowHover]="true" [alwaysShowPaginator]="false" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true" styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm" [paginator]="true" [globalFilterFields]="globalFilterFields" [autoLayout]="true" responsiveLayout="scroll" [rowsPerPageOptions]="[10,25,50]" [tableStyle]="{ width: 'layoutcontent'}">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between flex-column sm:flex-row">
+          <button pButton label="Clear" class="p-button-outlined p-button-secondary mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+          <span class="p-input-icon-left mb-2">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full" />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:5px;"></th>
+          <th *ngFor="let col of headers" [pSortableColumn]="col.header">
+            {{col?.label}}
+            <p-columnFilter type="text" [field]="col.header" display="menu"></p-columnFilter>
+            <p-sortIcon [field]="col.header"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-barrier>
+        <tr>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" style="padding: 0px;" class="p-element p-ripple p-button-success p-button-text p-button p-component" (click)="editbarrier()"></button>
+          </td>
+          <td *ngFor="let col of headers" [ngClass]="col?.field === 'isFillingStation' || col?.field === 'isGateEntry' || col?.field === 'isGateOut' || col?.field === 'isDumpArea' ? 'text-center' : ''">
+            <span *ngIf="col.field !== 'isFillingStation' && col.field !== 'isGateEntry' && col.field !== 'isGateOut' && col.field !== 'isDumpArea'">
+              {{barrier[col.field]}}
+            </span>
+            <span *ngIf="col.field === 'isFillingStation' || col.field === 'isGateEntry' || col.field === 'isGateOut' || col.field === 'isDumpArea'">
+              <p-checkbox value="isFillingStation" [binary]="true" [(ngModel)]="barrier[col.field]" [disabled]="true"></p-checkbox>
+            </span>
+          </td>
+          <!-- <td *ngFor="let col of headers" [ngClass]="col?.field === 'isFillingStation' || col?.field === 'isGateEntry' || col?.field === 'isGateOut' || col?.field === 'isDumpArea' ? 'text-center' : ''"><span *ngIf="col.field === 'isFillingStation' || col.field === 'isGateEntry' || col.field === 'isGateOut' || col.field === 'isDumpArea'"><p-checkbox [(ngModel)]="barrier[col.field]"></p-checkbox></span><span *ngIf="col.field !== 'isFillingStation' && col.field !== 'isGateEntry' && col.field !== 'isGateOut' && col.field !== 'isDumpArea'">
+                  {{ barrier[col.field] }}
+                </span></td> -->
+          <!-- <td>{{barrier.barrierID}}</td><td ><p-checkbox *ngIf="headers!== undefined" [(ngModel)]="headers.isFillingStation"></p-checkbox></td><td>{{barrier.isGateEntry}}</td><td>{{barrier.isGateOut}}</td><td>{{barrier.isDumpArea}}</td><td>{{barrier.createdBy}}</td><td>{{barrier.createdAt}}</td><td>{{barrier.updatedBy}}</td><td>{{barrier.updatedAt}}</td> -->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="md:text-center m-5" colspan="13">No Boom Barriers Found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- Dialog  -->
+    <p-dialog header="Boom Barrier" [(visible)]="dialog" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '70%', '640px': '80%'}" [style]="{width: '70%'}">
+      <div class="flex flex-column align-items-center justify-content-center">
+        <form [formGroup]="barrierForm" (ngSubmit)="onSubmit()">
+          <div class="grid">
+            <div class="col-12 vehicles-container">
+              <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-4">
+                  <label class="required">Id:</label>&nbsp; <input pInputText id="id" type="text" formControlName="barrierId" placeholder="Enter BoomBarrier Id" />
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label class="required">Is Filling Station:</label>&nbsp; <p-inputSwitch id="id" formControlName="isFillingStation"></p-inputSwitch>
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label class="required">Is Gate Entry:</label>&nbsp; <p-inputSwitch id="id" formControlName="isGateEntry"></p-inputSwitch>
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label class="required">Is Gate Out:</label>&nbsp; <p-inputSwitch id="id" formControlName="isGateOut"></p-inputSwitch>
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label class="required">Is Dump Area:</label>&nbsp; <p-inputSwitch id="id" formControlName="isDumpArea"></p-inputSwitch>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <ng-template pTemplate="footer">
+        <div class="col-4" style="float:right">
+          <button pButton pRipple type="submit" class="p-button-raised p-button-primary" [label]="submitLabel" (click)="onSubmit()"></button>
+        </div>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>

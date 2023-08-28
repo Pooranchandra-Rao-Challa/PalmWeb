@@ -1,0 +1,107 @@
+<div class="col-12">
+  <div class="card">
+    <!-- Toolbar -->
+    <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left">
+        <h4>Vehicle in&out Info</h4>
+      </ng-template>
+      <ng-template pTemplate="right">
+        <button pButton pRipple label="New VehicleInfo" icon="pi pi-plus" class="p-button-primary p-mr-2" (click)="initVehicle()"></button>
+      </ng-template>
+    </p-toolbar>
+    <!-- table -->
+    <p-table #dt1 [value]="vehicleinfo" dataKey="id" [rows]="10" [rowHover]="true" [alwaysShowPaginator]="false" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true" styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm" [paginator]="true" [globalFilterFields]="" [autoLayout]="true" responsiveLayout="scroll" [rowsPerPageOptions]="[10,25,50]" [tableStyle]="{ width: 'layoutcontent'}">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between flex-column sm:flex-row">
+          <button pButton label="Clear" class="p-button-outlined p-button-secondary mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+          <span class="p-input-icon-left mb-2">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full" />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:5px;"></th>
+          <th *ngFor="let col of headers" [pSortableColumn]="col.header">
+            {{col?.label}}
+            <p-columnFilter type="text" [field]="col.header" display="menu"></p-columnFilter>
+            <p-sortIcon [field]="col.header"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-vehicle>
+        <tr>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" style="padding: 0px;" class="p-element p-ripple p-button-success p-button-text p-button p-component" (click)="editVehicle()"></button>
+          </td>
+          <td>{{vehicle.id}}</td>
+          <td>{{vehicle.vehicleId}}</td>
+          <td>{{vehicle.boomBarrierId}}</td>
+          <td>{{vehicle.reportingTime}}</td>
+          <td>{{vehicle.carrierWeight}}</td>
+          <td>{{vehicle.tareWeight}}</td>
+          <td>{{vehicle.netWeight}}</td>
+          <td>{{vehicle.fuelQuantity}}</td>
+          <td>{{vehicle.createdAt}}</td>
+          <td>{{vehicle.createdBy}}</td>
+          <td>{{vehicle.updatedAt}}</td>
+          <td>{{vehicle.updatedBy}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="md:text-center m-5" colspan="9">No Vehicles Found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- Dialog  -->
+    <p-dialog header="Vehicle" [(visible)]="dialog" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '70%', '640px': '80%'}" [style]="{width: '70%'}">
+      <div class="flex flex-column align-items-center justify-content-center">
+        <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+          <div class="grid">
+            <div class="col-12 vehicles-container">
+              <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-4">
+                  <label>Id: <sup class="p-error">*</sup>
+                  </label>&nbsp; <input pInputText id="id" type="text" formControlName="vehicleId" placeholder="Enter Vehicle Id" />
+                </div>
+                <!-- <div class="field col-12 md:col-4"><label>FastTagId:<sup class="p-error">*</sup></label>&nbsp;
+                  <input pInputText id="name" type="text" formControlName="vehicleId" placeholder="Enter FastTagId" /></div> -->
+                <div class="field col-12 md:col-4">
+                  <label>BoomBarrier Id: <sup class="p-error">*</sup>
+                  </label>&nbsp; <input pInputText id="id" type="text" formControlName="boomBarrierId" placeholder="Enter BoomBarrier Id" />
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label>Reporting Time: <sup class="p-error">*</sup>
+                  </label>&nbsp; <input pInputText id="name" type="text" formControlName="reportingTime" placeholder="Enter Reporting Time" />
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label>Carrier Weight: <sup class="p-error">*</sup>
+                  </label>&nbsp; <input pInputText id="id" type="text" formControlName="carrierWeight" placeholder="Enter Carrier Weight" />
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label>Tare Weight: <sup class="p-error">*</sup>
+                  </label>&nbsp; <input pInputText id="name" type="text" formControlName="tareWeight" placeholder="Enter Tare Weight" />
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label>Net Weight: <sup class="p-error">*</sup>
+                  </label>&nbsp; <input pInputText id="id" type="text" formControlName="netWeight" placeholder="Enter Net Weight" />
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label>Fuel Quantity: <sup class="p-error">*</sup>
+                  </label>&nbsp; <input pInputText id="name" type="text" formControlName="fuelQuantity" placeholder="Enter Fuel Quantity" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <ng-template pTemplate="footer">
+        <div class="col-4" style="float:right">
+          <button pButton pRipple type="submit" class="p-button-raised p-button-primary" [label]="submitLabel" (click)="onSubmit()"></button>
+        </div>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="col-12">
+    <div class="card">
+      <!-- Toolbar -->
+      <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+          <h4>Vehicles</h4>
+        </ng-template>
+        <ng-template pTemplate="right">
+          <button pButton pRipple label="New Vehicle" icon="pi pi-plus" class="p-button-primary p-mr-2" (click)="initVehicle()"></button>
+        </ng-template>
+      </p-toolbar>
+      <!-- table -->
+      <p-table #dt1 [value]="vehicles" dataKey="id" [rows]="10" [rowHover]="true" [alwaysShowPaginator]="false" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true" styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm" [paginator]="true" [globalFilterFields]="globalFilterFields" [autoLayout]="true" responsiveLayout="scroll" [rowsPerPageOptions]="[10,25,50]" [style]="{width: 'auto'}" [tableStyle]="{ width: 'layoutcontent'}">
+        <ng-template pTemplate="caption">
+          <div class="flex justify-content-between flex-column sm:flex-row">
+            <button pButton label="Clear" class="p-button-outlined p-button-secondary mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left mb-2">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:5px;"></th>
+            <th *ngFor="let col of headers" [pSortableColumn]="col.header">
+              {{col?.label}}
+              <p-columnFilter type="text" [field]="col.header" display="menu"></p-columnFilter>
+              <p-sortIcon [field]="col.header"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-vehicle>
+          <tr>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" style="padding: 0px;" class="p-element p-ripple p-button-success p-button-text p-button p-component" (click)="editVehicle()"></button>
+            </td>
+            <td>{{vehicle.id}}</td>
+            <td>{{vehicle.fastagId}}</td>
+            <td>{{vehicle.vehicleNo}}</td>
+            <td>{{vehicle.address}}</td>
+            <td>{{vehicle.pickListId}}</td>
+            <td>{{vehicle.driverName}}</td>
+            <td>{{vehicle.mobileNumber}}</td>
+            <td>{{vehicle.driverAddress}}</td>
+            <td>{{vehicle.createdAt}}</td>
+            <td>{{vehicle.createdBy}}</td>
+            <td>{{vehicle.updatedAt}}</td>
+            <td>{{vehicle.updatedBy}}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td class="md:text-center m-5" colspan="13">No Vehicles Found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <!-- Dialog  -->
+      <p-dialog header="Vehicle" [(visible)]="dialog" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '70%', '640px': '80%'}" [style]="{width: '70%'}">
+        <div class="flex flex-column align-items-center justify-content-center">
+          <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+            <div class="grid">
+              <div class="col-12 vehicles-container">
+                <div class="p-fluid p-formgrid grid">
+                  <div class="field col-12 md:col-4">
+                    <label>Id: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="id" type="text" formControlName="id" placeholder="Enter Vehicle Id" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>FastTagId: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="name" type="text" formControlName="fastagId" placeholder="Enter FastTagId" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>VehicalNo: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="id" type="text" formControlName="vehicleNo" placeholder="Enter VehicalNo" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>Address: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="name" type="text" formControlName="address" placeholder="Enter Address" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>PickList Id: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="name" type="text" formControlName="pickListId" placeholder="Enter PickList Id" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>DriverName: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="id" type="text" formControlName="driverName" placeholder="Enter Driver Name" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>PhoneNo: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="name" type="text" formControlName="mobileNumber" placeholder="Enter Phone No" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>DriverAddress: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="id" type="text" formControlName="driverAddress" placeholder="Enter Driver Address" />
+                  </div>
+                  <div class="field col-12 md:col-4">
+                    <label>VehicleType: <sup class="p-error">*</sup>
+                    </label>&nbsp; <input pInputText id="name" type="text" formControlName="pickListId" placeholder="Enter vehicle Type" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <ng-template pTemplate="footer">
+          <div class="col-4" style="float:right">
+            <button pButton pRipple type="submit" class="p-button-raised p-button-primary" [label]="submitLabel" (click)="onSubmit()"></button>
+          </div>
+        </ng-template>
+      </p-dialog>
+    </div>
+  </div>
