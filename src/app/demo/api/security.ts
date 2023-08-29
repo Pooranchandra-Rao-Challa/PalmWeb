@@ -59,6 +59,18 @@ export interface boomBarrier {
   updatedAt?: string;
 
 }
+export class secureQuestionDto {
+  questionId?: number;
+  question?: string;
+}
+export class createUserQuestionDto {
+  userQuestionId?: number;
+  userId?: string;
+  questionId?: number;
+  question?: string;
+  answer?: string;
+  userName?: string;
+}
 export class RoleViewDto {
   roleId?: string
   name?: string

@@ -661,29 +661,70 @@
             "updatedBy": "784093"
         }
     ],
+    "securityQuestions":[
+        {
+            "questionId":60,
+            "question":"What is your date of birth?"
+        },
+        {
+            "questionId":61,
+            "question":"What is your first vehicle license plate number?"
+        },
+        {
+            "questionId":62,
+            "question":"What was your favorite subject in high school?"
+        },
+        {
+            "questionId":63,
+            "question":      "What is the name of your first pet?"
+        },
+        {
+            "questionId":64,
+            "question":      "What city were you born in?"
+        },
+        {
+            "questionId":65,
+            "question":      "What was your favorite school teachers name?"
+        }
+    ],
     "roles": [
         {
-            "name": "Toll Manager",
+            "name": "Managing Director",
             "isActive": true,
             "createdAt": "2023-03-17T13:17:06.787"
         },
         {
-            "name": "Dump Yard Manager",
+            "name": "Project Manager",
             "isActive": true,
             "createdAt": "2023-03-17T13:17:06.787"
         },
         {
-            "name": "Technician",
+            "name": "Scrum Master",
             "isActive": true,
             "createdAt": "2022-11-19T14:14:17.173"
         },
         {
-            "name": "Driver",
+            "name": "HR",
             "isActive": true,
             "createdAt": "2023-03-17T13:17:00.09"
         },
         {
-            "name": "Operator ",
+            "name": "Team Leader ",
+            "isActive": true,
+            "createdAt": "2022-12-28T16:10:57.303"
+        },
+        {
+            "name": "Web Developers",
+            "isActive": true,
+            "createdAt": "2022-11-19T14:14:17.173"
+        },
+        {
+            "name": "Tester",
+            "isActive": true,
+            "createdAt": "2023-03-17T13:17:00.09"
+        },
+        {
+            "name": "Mobile Developer",
             "isActive": true,
             "createdAt": "2022-12-28T16:10:57.303"
         }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Assets, Employee, Leave, LookUpHeaderDto, ProjectDetailsDto, RoleViewDto,VehicleInfo,boomBarrier,vehicles } from '../api/security';
+import { SecurQuestion } from 'src/app/auth/securityquestions/securityquestions.component';
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +39,13 @@ export class SecurityService {
             .toPromise()
             .then((res: { barrier:boomBarrier[]; }) => res.barrier as boomBarrier[])
             .then((data: any) => data);
+    }
+    getSecureQuestions(){
+        return this.http
+        .get<any>('assets/demo/data/security.json')
+        .toPromise()
+        .then((res: { securityQuestions:SecurQuestion[]; }) => res.securityQuestions as SecurQuestion[])
+        .then((data: any) => data);
     }
     getRoles() {
         return this.http.get<any>('assets/demo/data/security.json')
