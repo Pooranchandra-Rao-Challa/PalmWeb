@@ -39,10 +39,10 @@
                 <ng-template pTemplate="body" let-permitApproval>
                     <tr>
                         <td><button pButton pRipple icon="pi pi-pencil"
-                                class="p-element p-ripple p-button-text p-button p-component"
+                                class="p-element p-ripple p-button-text p-button-secondary p-component"
                                 (click)="editProduct(permitApproval)"></button>
                             <button pButton pRipple icon="pi pi-trash" 
-                                class="p-element p-ripple p-button-text p-button p-component"></button>
+                                class="p-element p-ripple p-button-text p-button-secondary p-button p-component"></button>
                         </td>
                         <td>{{permitApproval.SecurityQuestions}}</td>
                         <td>{{permitApproval.Answer}}</td>
