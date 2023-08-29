@@ -35,7 +35,6 @@
           <td>
             <button pButton pRipple icon="pi pi-pencil" style="padding: 0px;" class="p-element p-ripple p-button-success p-button-text p-button p-component" (click)="editVehicle()"></button>
           </td>
-          <td>{{vehicle.id}}</td>
           <td>{{vehicle.vehicleId}}</td>
           <td>{{vehicle.boomBarrierId}}</td>
           <td>{{vehicle.reportingTime}}</td>
@@ -43,10 +42,7 @@
           <td>{{vehicle.tareWeight}}</td>
           <td>{{vehicle.netWeight}}</td>
           <td>{{vehicle.fuelQuantity}}</td>
-          <td>{{vehicle.createdAt}}</td>
-          <td>{{vehicle.createdBy}}</td>
-          <td>{{vehicle.updatedAt}}</td>
-          <td>{{vehicle.updatedBy}}</td>
+        
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
@@ -62,10 +58,10 @@
           <div class="grid">
             <div class="col-12 vehicles-container">
               <div class="p-fluid p-formgrid grid">
-                <div class="field col-12 md:col-4">
+                <!-- <div class="field col-12 md:col-4">
                   <label>Id: <sup class="p-error">*</sup>
                   </label>&nbsp; <input pInputText id="id" type="text" formControlName="vehicleId" placeholder="Enter Vehicle Id" />
-                </div>
+                </div> -->
                 <!-- <div class="field col-12 md:col-4"><label>FastTagId:<sup class="p-error">*</sup></label>&nbsp;
                   <input pInputText id="name" type="text" formControlName="vehicleId" placeholder="Enter FastTagId" /></div> -->
                 <div class="field col-12 md:col-4">
@@ -77,19 +73,19 @@
                   </label>&nbsp; <input pInputText id="name" type="text" formControlName="reportingTime" placeholder="Enter Reporting Time" />
                 </div>
                 <div class="field col-12 md:col-4">
-                  <label>Carrier Weight: <sup class="p-error">*</sup>
+                  <label>Carrier Weight: 
                   </label>&nbsp; <input pInputText id="id" type="text" formControlName="carrierWeight" placeholder="Enter Carrier Weight" />
                 </div>
                 <div class="field col-12 md:col-4">
-                  <label>Tare Weight: <sup class="p-error">*</sup>
+                  <label>Tare Weight: 
                   </label>&nbsp; <input pInputText id="name" type="text" formControlName="tareWeight" placeholder="Enter Tare Weight" />
                 </div>
                 <div class="field col-12 md:col-4">
-                  <label>Net Weight: <sup class="p-error">*</sup>
+                  <label>Net Weight: 
                   </label>&nbsp; <input pInputText id="id" type="text" formControlName="netWeight" placeholder="Enter Net Weight" />
                 </div>
                 <div class="field col-12 md:col-4">
-                  <label>Fuel Quantity: <sup class="p-error">*</sup>
+                  <label>Fuel Quantity: 
                   </label>&nbsp; <input pInputText id="name" type="text" formControlName="fuelQuantity" placeholder="Enter Fuel Quantity" />
                 </div>
               </div>

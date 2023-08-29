@@ -15,7 +15,7 @@ export interface ITableHeader {
   styles: []
 })
 export class VehicleInformationComponent implements OnInit {
-  globalFilterFields: string[] = ['id', 'fastagId', 'vehicleNo','address','driverName','mobileNumber','driverAddress','pickListId','createdBy','createdAt','updatedBy','updatedAt'];
+  globalFilterFields: string[] = ['id', 'fastagId', 'vehicleNo','address','driverName','mobileNumber','driverAddress','vehicalType','createdBy','createdAt','updatedBy','updatedAt'];
 
   dialog: boolean = false;
   @ViewChild('filter') filter!: ElementRef;
@@ -42,7 +42,7 @@ export class VehicleInformationComponent implements OnInit {
       driverName : new FormControl('', [Validators.required]),
       mobileNumber : new FormControl('', [Validators.required]),
       driverAddress : new FormControl('', [Validators.required]),
-      pickListId: new FormControl('', [Validators.required]),
+      vehicalType: new FormControl('', [Validators.required]),
     });
    this.initVehicles();
   }
@@ -54,18 +54,18 @@ export class VehicleInformationComponent implements OnInit {
 
 
   headers: ITableHeader[] = [
-    { field: 'id ', header: 'id', label: 'ID' },
-    { field: 'fastagId ', header: 'fastTagId', label: 'Fast tag id ' },
+    // { field: 'id ', header: 'id', label: 'ID' },   
     { field: 'vehicleNo ', header: 'vehicleNo', label: 'Vehical No' },
+    { field: 'fastagId ', header: 'fastTagId', label: 'Fast tag id ' },
     { field: 'address ', header: 'address', label: 'Address' },
-    { field: 'pickListId', header: 'pickListId', label: 'PickListId' },
+    { field: 'vehicalType', header: 'vehicalType', label: 'vehical Type' },
     { field: 'driverName ', header: 'driverName', label: 'Driver Name ' },
-    { field: 'phoneNo', header: 'phoneNo', label: 'PhoneNo' },
-    { field: 'driverAddress ', header: 'driverAddress', label: 'driverAddress' },
-    { field: 'createdAt  ', header: 'createdAt ', label: 'Created At ' },
-    { field: 'createdBy ', header: 'createdBy ', label: 'Created By ' },
-    { field: 'updatedAt ', header: 'updatedAt', label: 'Updated At' },
-    { field: 'updatedBy ', header: 'updatedBy ', label: 'Updated By ' },
+    { field: 'phoneNo', header: 'phoneNo', label: 'Phone No' },
+    { field: 'driverAddress ', header: 'driverAddress', label: 'Driver Address' },
+    // { field: 'createdAt  ', header: 'createdAt ', label: 'Created At ' },
+    // { field: 'createdBy ', header: 'createdBy ', label: 'Created By ' },
+    // { field: 'updatedAt ', header: 'updatedAt', label: 'Updated At' },
+    // { field: 'updatedBy ', header: 'updatedBy ', label: 'Updated By ' },
 
   ];
 

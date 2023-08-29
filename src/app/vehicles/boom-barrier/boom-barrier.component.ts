@@ -27,10 +27,11 @@ export class BoomBarrierComponent {
   ngOnInit(): void {
     this.barrierForm = this.formbuilder.group({
       barrierId: [''],
+      fastagID:[''],
       isFillingStation: [],
       isGateEntry: [],
       isGateOut: [],
-      isDumpArea: [],
+      isDumpArea: [],     
       createdBy: new FormControl('', [Validators.required]),
       createdAt: new FormControl('', [Validators.required]),
       updatedBy: new FormControl('', [Validators.required]),
@@ -47,14 +48,15 @@ export class BoomBarrierComponent {
 
   headers: ITableHeader[] = [
     { field: 'barrierId', header: 'barrierId', label: 'Barrier ID' },
+    { field: 'fastagId', header: 'fastagId', label: 'Fastag ID' },
     { field: 'isFillingStation', header: 'isFillingStation', label: 'Is Filling Station' },
     { field: 'isGateEntry', header: 'isGateEntry', label: 'Is Gate Entry' },
     { field: 'isGateOut', header: 'isGateOut', label: 'Is Gate Out' },
     { field: 'isDumpArea', header: 'isDumpArea', label: 'Is Dump Area' },
-    { field: 'createdBy', header: 'createdBy', label: 'Careated By' },
-    { field: 'createdAt', header: 'createdAt', label: 'Created At' },
-    { field: 'updatedBy', header: 'updatedBy', label: 'Updated By' },
-    { field: 'updatedAt', header: 'updatedAt', label: 'Updated At' },
+    // { field: 'createdBy', header: 'createdBy', label: 'Careated By' },
+    // { field: 'createdAt', header: 'createdAt', label: 'Created At' },
+    // { field: 'updatedBy', header: 'updatedBy', label: 'Updated By' },
+    // { field: 'updatedAt', header: 'updatedAt', label: 'Updated At' },
   ];
 
 

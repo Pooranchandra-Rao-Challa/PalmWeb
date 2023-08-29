@@ -47,7 +47,7 @@ export class VehiclesInOutInfoComponent {
 
 
   headers: ITableHeader[] = [
-    { field: 'id ', header: 'id', label: 'ID' },
+    // { field: 'id ', header: 'id', label: 'ID' },
     { field: 'vehicleId ', header: 'vehicleId', label: 'Vehicle Id' },
     { field: 'boomBarrierId ', header: 'boomBarrierId', label: 'BoomBarrier Id' },
     { field: 'reportingTime ', header: 'reportingTime', label: 'Reporting Time' },
@@ -55,10 +55,10 @@ export class VehiclesInOutInfoComponent {
     { field: 'tareWeight', header: 'tareWeight', label: 'Tare Weight' },
     { field: 'netWeight ', header: 'netWeight', label: 'Net Weight' },
     { field: 'fuelQuantity', header: 'fuelQuantity', label: 'Fuel Quantity' },
-    { field: 'createdAt  ', header: 'createdAt ', label: 'Created At ' },
-    { field: 'createdBy ', header: 'createdBy ', label: 'Created By ' },
-    { field: 'updatedAt ', header: 'updatedAt', label: 'Updated At' },
-    { field: 'updatedBy ', header: 'updatedBy ', label: 'Updated By ' },
+  //   { field: 'createdAt  ', header: 'createdAt ', label: 'Created At ' },
+  //   { field: 'createdBy ', header: 'createdBy ', label: 'Created By ' },
+  //   { field: 'updatedAt ', header: 'updatedAt', label: 'Updated At' },
+  //   { field: 'updatedBy ', header: 'updatedBy ', label: 'Updated By ' },
   ];
 
 
